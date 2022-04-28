@@ -68,3 +68,30 @@ class Estadisticas:
     varianza = c3 / (n-1)
     desviaciontipica = sqrt(varianza)
     return ([varianza,desviaciontipica])
+
+  def Cuartiles(self,mediana,rangoMediana):
+    n = self.caracteristica.count()
+    sort_caracteristica = self.caracteristica.sort_values()
+    sort_caracteristica = sort_caracteristica-reset_index(drop=True)
+    q1 = 0
+    q2 = mediana
+    q3 = 0
+
+  resto = rangoMediana % 2
+  if (resto != 0):
+    q1 = sort_caracteristica[((rangoMediana/2)+1)-1]
+  else:
+    valormin = sort_caracteristica[((rangoMediana/2)-1)]
+    valormax = sort_caracteristica[(rangoMediana/2)]
+    q1 = (valormin + ((valormax - valormin)/2)+valormax) / 2
+
+  nbdatos = len(sort_caracteristica)+1
+  nbdatosmediana = nbdatos - rangoMediana
+  resto = nbdatosmediana % 2
+  if (resto != 0):
+    q3 = sort_caracteristica [(rangoMediana + ceil(nbdatosmediana/2))-1]
+  else:
+    valorminq3 = sort_caracteristica[(rangoMediana + (nbdatosmedian/2))-1]
+    valormaxq3 = sort_caracteristica[(rangoMediana + (nbdatosmediana/2))]
+    q3 = (valormin + ((valormax - valormin) / 2)+ valormax) / 2
+  return ([q1,q2,q3])
