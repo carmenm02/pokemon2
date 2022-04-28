@@ -40,3 +40,9 @@ def Mediana(caracteristica):
       rangoPython = rango - 1
       mediana = caracteristica [rangoPython]
     return Mediana
+
+#hago lo mismo con la moda
+
+def Moda(caracteristica):
+  moda = Counter(caracteristica)
+  return moda
